@@ -336,6 +336,23 @@ void Graphics::DrawRect( int x0,int y0,int x1,int y1,Color c )
 	}
 }
 
+
+void Graphics::DrawMidpointCircle(int centerX, int centerY, int radius, Color c)
+{
+	for (int x = centerX - radius; x < centerX + radius; x++)
+	{
+		for (int y = centerY - radius; y < centerY + radius; y++)
+		{
+			if (pow(centerX - x, 2) + pow(centerY - y, 2) < pow(radius, 2))
+			{
+				PutPixel(x, y, c);
+			}
+		}
+	}
+}
+
+
+
 //////////////////////////////////////////////////
 //           Graphics Exception
 Graphics::Exception::Exception( HRESULT hr,const std::wstring& note,const wchar_t* file,unsigned int line )
