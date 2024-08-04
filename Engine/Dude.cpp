@@ -355,9 +355,11 @@ void Dude::Update(const Mouse& mouse,float dt)
 		const Vec2 pointerPos(float(mouse.GetPosX()), float(mouse.GetPosY()));
 		Vec2 target = pointerPos - pos;
 
-		pos += target.GetNormalized() * dt * speed;
+		if (target.GetLengthSq() > 2.0f)
+		{
+			pos += target.GetNormalized() * dt * speed;
+		}
 	}
-	
 }
 
 Vec2 Dude::GetPos() const
